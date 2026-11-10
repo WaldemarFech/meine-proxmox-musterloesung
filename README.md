@@ -1,6 +1,6 @@
 # Proxmox-Musterlösung: VPS, Traefik und Authelia
 
-**Arbeitsstand:** Dieses Repository ist ein Ausgangspunkt für eine verständliche Anleitung, noch keine fertig getestete Musterinstallation. Screenshots und vollständige, verifizierte Konfigurationen fehlen. Verwende die folgenden Angaben als Beispiel und prüfe sie auf deinem eigenen System.
+Dieses Repository erklärt eine tatsächliche Proxmox-VPS-Anlage als Beispiel. Es enthält einen dokumentierten Netzplan, reale interne IPs und Container-IDs, ausgewählte Portweiterleitungen und eine KI-Kopiervorlage. Prüfe vor Änderungen, welche Werte und Providerbedingungen auf dein eigenes System passen.
 
 ## Die Idee
 
@@ -16,7 +16,24 @@ Beispiel aus einer bestehenden Anlage, als Orientierung – **nicht ungeprüft �
 | Authelia | LXC `1004`, `192.168.100.4` |
 | Tiny Pages | LXC `100032`, `192.168.100.32` |
 
-Die Werte sind dokumentierte Beispiele und keine aktuelle Inventur deines Servers. Eine öffentliche WAN-IP oder Zugangsdaten sind hier bewusst nicht enthalten. Die zugehörige Benutzerverwaltung und ihr Entwicklungsstand stehen im Repository [Authelia Onboarding](https://github.com/WaldemarFech/authelia-onboarding).
+Die Werte wurden am 10. November 2026 an der Beispielanlage lesend abgefragt; dein eigener Server kann abweichen. Eine öffentliche WAN-IP oder Zugangsdaten sind hier bewusst nicht enthalten. Die zugehörige Benutzerverwaltung und ihr Entwicklungsstand stehen im Repository [Authelia Onboarding](https://github.com/WaldemarFech/authelia-onboarding).
+
+## Aufbau auf einen Blick
+
+```mermaid
+flowchart LR
+    client["Internet / Browser"] -->|"80 / 443"| pve["Proxmox-VPS<br/>vmbr0 → vmbr1"]
+    pve --> traefik["Traefik<br/>192.168.100.3"]
+    traefik --> auth["Authelia<br/>192.168.100.4"]
+    traefik --> web["Tiny Pages<br/>192.168.100.32"]
+    pve -->|"UDP 51820"| wg["WireGuard-Hub<br/>192.168.100.10"]
+    wg <--> home["Heimnetz / Proxmox-Hosts"]
+    wg <--> fritz["weiterer Standort / FRITZ!Box"]
+```
+
+[**Architektur mit allen Beispieldiensten →**](docs/01-architektur.md) · [**Netzwerk und DNAT →**](docs/02-netzwerk-und-dnat.md) · [**Dienste und Authelia →**](docs/03-dienste-und-authelia.md)
+
+Die Tabellen und das Netzwerk wurden anhand der Anlage abgeglichen. Die Dokumentation unterscheidet dabei jeweils aktuelle Abfragen, ältere Belege und Tests, die noch ausstehen.
 
 ## Kopiervorlage für deine KI
 
