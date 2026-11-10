@@ -31,7 +31,7 @@ flowchart LR
     wg <--> fritz["weiterer Standort / FRITZ!Box"]
 ```
 
-[**Architektur mit allen Beispieldiensten →**](docs/01-architektur.md) · [**Netzwerk und DNAT →**](docs/02-netzwerk-und-dnat.md) · [**Dienste und Authelia →**](docs/03-dienste-und-authelia.md) · [**WireGuard und Standorte →**](docs/04-wireguard-standorte.md)
+[**Architektur mit allen Beispieldiensten →**](docs/01-architektur.md) · [**Netzwerk und DNAT →**](docs/02-netzwerk-und-dnat.md) · [**Dienste und Authelia →**](docs/03-dienste-und-authelia.md) · [**WireGuard und Standorte →**](docs/04-wireguard-standorte.md) · [**Erste Testseite einrichten →**](docs/05-traefik-tiny-pages.md)
 
 Die Tabellen und das Netzwerk wurden anhand der Anlage abgeglichen. Die Dokumentation unterscheidet dabei jeweils aktuelle Abfragen, ältere Belege und Tests, die noch ausstehen.
 
